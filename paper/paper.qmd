@@ -1,0 +1,78 @@
+---
+title: "Relation between number of Marriage and time"
+subtitle: "a simple discussion of marriage number in Toronto"
+author: 
+  - Ziqi Zhu
+thanks: "Code and data are available at: https://open.toronto.ca/dataset/marriage-licence-statistics/."
+date: 19 September 2024
+date-format: long
+abstract: "This paper introduce the chage of number of marriage along time in Toronto briefly."
+format: pdf
+number-sections: true
+bibliography: references.bib
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+
+data <- read_csv(here::here("data/analysis_data/analysis_data.csv"))
+```
+
+
+# Introduction
+
+We use @talia, and @opendatatorotno to discover some relation bwtween time and number of marriage in Toronto, here is some of my findings.
+
+
+# Data {#sec-data}
+
+Our data comes from open data Toronto.
+
+```{r}
+#| label: fig-marriage
+#| fig-cap: Bills of penguins
+#| echo: false
+
+ggplot(data, aes(x = date, y = marriage_licenses, color = civic_centre, group = civic_centre)) +
+  geom_line() +
+  labs(title = "Marriage Licenses Over Time by Civic Centre",
+       x = "Date",
+       y = "Number of Marriage Licenses",
+       color = "Civic Centre") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+data |> 
+  ggplot(aes(x = date, y = marriage_licenses)) +
+  geom_point()
+```
+
+
+# Discussion
+
+## First discussion point {#sec-first-point}
+We can find from the graph that the number of marriage follow some same patterns for different regions like a wave, but after 2020, the number is unstable like previous years, there's a grow in general for most civic center, ET civic center is missing from the dataset since 2021.
+
+## Second discussion point
+
+An intresting point is the marriage number tends to be higher in some months, like summer and fall instead of some other months
+
+\newpage
+
+\appendix
+
+# Appendix {-}
+
+
+# Additional data details
+
+
+# References
+
+
